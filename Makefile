@@ -34,20 +34,20 @@ do-build:
 	(cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${SH} build_all_configs.sh)
 
 do-install:
-	${MKDIR} ${WRKSRC}/pkg
+	${MKDIR} ${WRKSRC}/${PORTNAME}
 	${INSTALL_PROGRAM} \
 		${WRKSRC}/mkspiffs-${MKSPIFFS_VERSION}-arduino-esp8266-freebsd/mkspiffs \
-		${WRKSRC}/pkg/mkspiffs_espressif8266_arduino
+		${WRKSRC}/${PORTNAME}/mkspiffs_espressif8266_arduino
 	${INSTALL_PROGRAM} \
 		${WRKSRC}/mkspiffs-${MKSPIFFS_VERSION}-esp-idf-freebsd/mkspiffs \
-		${WRKSRC}/pkg/mkspiffs_espressif32_espidf
+		${WRKSRC}/${PORTNAME}/mkspiffs_espressif32_espidf
 	${INSTALL_PROGRAM} \
 		${WRKSRC}/mkspiffs-${MKSPIFFS_VERSION}-arduino-esp32-freebsd/mkspiffs \
-		${WRKSRC}/pkg/mkspiffs_espressif32_arduino
-	${INSTALL_DATA} ${FILESDIR}/package.json.in ${WRKSRC}/pkg
-	${REINPLACE_CMD} -e 's|%%ARCH%%|${ARCH}|g' ${WRKSRC}/pkg/package.json.in
+		${WRKSRC}/${PORTNAME}/mkspiffs_espressif32_arduino
+	${INSTALL_DATA} ${FILESDIR}/package.json.in ${WRKSRC}/${PORTNAME}
+	${REINPLACE_CMD} -e 's|%%ARCH%%|${ARCH}|g' ${WRKSRC}/${PORTNAME}/package.json.in
 
-	${TAR} -C ${WRKSRC}/pkg -cf ${WRKSRC}/tool-mkspiffs-freebsd_${ARCH}-${PORTVERSION}.tar.gz .
+	${TAR} -C ${WRKSRC} -cf ${WRKSRC}/${PORTNAME}-freebsd_${ARCH}-${PORTVERSION}.tar.gz ${PORTNAME}
 
 	${MKDIR} ${STAGEDIR}${DATADIR}
 	${INSTALL_DATA} ${WRKSRC}/tool-mkspiffs-freebsd_${ARCH}-${PORTVERSION}.tar.gz ${STAGEDIR}${DATADIR}
