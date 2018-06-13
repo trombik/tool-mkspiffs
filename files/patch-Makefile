@@ -1,0 +1,13 @@
+--- Makefile.orig	2018-06-13 12:30:22 UTC
++++ Makefile
+@@ -53,8 +53,8 @@ ifeq ($(ARCHIVE), tar)
+ endif
+ 
+ 
+-VERSION ?= $(shell git describe --always)
+-SPIFFS_VERSION := $(shell git -C spiffs describe --tags || echo "unknown")
++VERSION ?= %%MKSPIFFS_VERSION%%
++SPIFFS_VERSION := %%SPIFFS_VERSION%%
+ BUILD_CONFIG_NAME ?= -generic
+ 
+ OBJ		:= main.o \
