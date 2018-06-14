@@ -4,6 +4,7 @@ Vagrant.configure("2") do |config|
   portname = "tool-mkspiffs"
   config.vm.provision "shell",
     inline: "
+    set -e
     sudo pkg install -y git
     if [ ! -d /usr/ports ]; then
       fetch -o - https://github.com/freebsd/freebsd-ports/archive/master.tar.gz | sudo tar -C /usr -xf - -s '/^freebsd-ports-master/ports/'
