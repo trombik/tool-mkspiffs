@@ -18,6 +18,8 @@ GH_TUPLE=	\
 
 MKSPIFFS_VERSION=	2.3.0
 SPIFFS_VERSION=	f5e26c4
+MKSPIFFS_PKGDIR=	${WRKSRC}/${PORTNAME}
+MKSPIFFS_PKGFILE=	${WRKSRC}/${PORTNAME}-freebsd_${ARCH}-${PORTVERSION}.tar.gz
 
 .include <bsd.port.pre.mk>
 
@@ -34,22 +36,23 @@ do-build:
 	(cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${SH} build_all_configs.sh)
 
 do-install:
-	${MKDIR} ${WRKSRC}/${PORTNAME}
+	${MKDIR} ${MKSPIFFS_PKGDIR}
 	${INSTALL_PROGRAM} \
 		${WRKSRC}/mkspiffs-${MKSPIFFS_VERSION}-arduino-esp8266-freebsd/mkspiffs \
-		${WRKSRC}/${PORTNAME}/mkspiffs_espressif8266_arduino
+		${MKSPIFFS_PKGDIR}/mkspiffs_espressif8266_arduino
 	${INSTALL_PROGRAM} \
 		${WRKSRC}/mkspiffs-${MKSPIFFS_VERSION}-esp-idf-freebsd/mkspiffs \
-		${WRKSRC}/${PORTNAME}/mkspiffs_espressif32_espidf
+		${MKSPIFFS_PKGDIR}/mkspiffs_espressif32_espidf
 	${INSTALL_PROGRAM} \
 		${WRKSRC}/mkspiffs-${MKSPIFFS_VERSION}-arduino-esp32-freebsd/mkspiffs \
-		${WRKSRC}/${PORTNAME}/mkspiffs_espressif32_arduino
-	${INSTALL_DATA} ${FILESDIR}/package.json.in ${WRKSRC}/${PORTNAME}
-	${REINPLACE_CMD} -e 's|%%ARCH%%|${ARCH}|g' ${WRKSRC}/${PORTNAME}/package.json.in
+		${MKSPIFFS_PKGDIR}/mkspiffs_espressif32_arduino
+	${INSTALL_DATA} ${FILESDIR}/package.json.in ${MKSPIFFS_PKGDIR}/package.json
+	${REINPLACE_CMD} -e 's|%%ARCH%%|${ARCH}|g' ${MKSPIFFS_PKGDIR}/package.json
+	${RM} ${MKSPIFFS_PKGDIR}/package.json.bak
 
-	${TAR} -C ${WRKSRC} -cf ${WRKSRC}/${PORTNAME}-freebsd_${ARCH}-${PORTVERSION}.tar.gz ${PORTNAME}
+	${TAR} -C ${MKSPIFFS_PKGDIR} -czf ${MKSPIFFS_PKGFILE} .
 
 	${MKDIR} ${STAGEDIR}${DATADIR}
-	${INSTALL_DATA} ${WRKSRC}/tool-mkspiffs-freebsd_${ARCH}-${PORTVERSION}.tar.gz ${STAGEDIR}${DATADIR}
+	${INSTALL_DATA} ${MKSPIFFS_PKGFILE} ${STAGEDIR}${DATADIR}
 
 .include <bsd.port.post.mk>
