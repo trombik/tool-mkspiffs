@@ -1,5 +1,5 @@
 Vagrant.configure("2") do |config|
-  config.vm.box = "trombik/ansible-freebsd-11.1-amd64"
+  config.vm.box = ENV["VAGRANT_VM_BOX"] || "trombik/ansible-freebsd-11.1-amd64"
   category = "devel"
   portname = "tool-mkspiffs"
   config.vm.provision "shell",
