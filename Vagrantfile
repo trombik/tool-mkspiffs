@@ -10,6 +10,7 @@ Vagrant.configure("2") do |config|
       fetch -o - https://github.com/freebsd/freebsd-ports/archive/master.tar.gz | sudo tar -C /usr -xf - -s '/^freebsd-ports-master/ports/'
     fi
     (cd /usr/ports/#{category} && sudo git clone https://github.com/trombik/#{portname}.git)
+    (cd /usr/pors/#{category}/#{portname} && git checkout tool-mkspiffs_1.200.0)
     sudo make -C /usr/ports/#{category}/#{portname} -DPACKAGE_BUILDING
     sudo make -C /usr/ports/#{category}/#{portname} install clean
     find /usr/local/share/#{portname}

@@ -1,5 +1,3 @@
-TIMESTAMP = 1528893996
-SHA256 (igrr-mkspiffs-2.230.0-0.2.3_GH0.tar.gz) = 6902c5fb1fecc08c044cd0b38a014beca5b010ee90f64a1048ed11e3ec6d2b8a
-SIZE (igrr-mkspiffs-2.230.0-0.2.3_GH0.tar.gz) = 41903
-SHA256 (pellepl-spiffs-f5e26c4_GH0.tar.gz) = 5017773fe19dc9208d56699f4da87bea3586f8b12f4a588448c143ae19b1d1e0
-SIZE (pellepl-spiffs-f5e26c4_GH0.tar.gz) = 94096
+TIMESTAMP = 1529926720
+SHA256 (igrr-mkspiffs-1.200.0-0.2.0_GH0.tar.gz) = b82e3cee00521c1d8d00e918ef640b0df7b06c9a3c80bd44d6229faf0df929bc
+SIZE (igrr-mkspiffs-1.200.0-0.2.0_GH0.tar.gz) = 89943

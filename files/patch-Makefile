@@ -1,13 +1,19 @@
---- Makefile.orig	2018-06-13 12:30:22 UTC
+--- Makefile.orig	2018-06-25 11:18:48 UTC
 +++ Makefile
-@@ -53,8 +53,8 @@ ifeq ($(ARCHIVE), tar)
+@@ -31,12 +31,15 @@ else
+ 		TARGET_CXXFLAGS = -mmacosx-version-min=10.7 -arch i386 -arch x86_64 -stdlib=libc++
+ 		TARGET_LDFLAGS  = -arch i386 -arch x86_64 -stdlib=libc++
+ 	endif
++	ifeq ($(UNAME_S), FreeBSD)
++		TARGET_OS := freebsd
++	endif
+ 	ARCHIVE_CMD := tar czf
+ 	ARCHIVE_EXTENSION := tar.gz
+ 	TARGET := mkspiffs
  endif
  
- 
 -VERSION ?= $(shell git describe --always)
--SPIFFS_VERSION := $(shell git -C spiffs describe --tags || echo "unknown")
 +VERSION ?= %%MKSPIFFS_VERSION%%
-+SPIFFS_VERSION := %%SPIFFS_VERSION%%
- BUILD_CONFIG_NAME ?= -generic
  
  OBJ		:= main.o \
+ 		   spiffs/spiffs_cache.o \
