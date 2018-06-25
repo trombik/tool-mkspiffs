@@ -75,3 +75,7 @@ Copy the package archive to _the host_ from _the guest_ by;
 ```
 > vagrant ssh -- cat /usr/local/share/tool-mkspiffs/tool-mkspiffs-freebsd_amd64-${VERSION}.tar.gz > tool-mkspiffs-${VERSION}.tar.gz
 ```
+
+## Older versions
+
+`tool-mkspiffs_1.200.0` is available in `tool-mkspiffs_1.200.0` branch.
