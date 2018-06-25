@@ -6,7 +6,7 @@ Vagrant.configure("2") do |config|
     inline: "
     set -e
     set -x
-    sudo pkg install -y git
+    sudo pkg install -y git gmake
     if [ ! -d /usr/ports ]; then
       fetch -o - https://github.com/freebsd/freebsd-ports/archive/master.tar.gz | sudo tar -C /usr -xf - -s '/^freebsd-ports-master/ports/'
     fi
